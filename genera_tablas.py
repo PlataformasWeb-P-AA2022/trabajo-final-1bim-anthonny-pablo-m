@@ -2,7 +2,7 @@ from sqlalchemy import column, create_engine, false, null, true
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
-from configuracion import cadena_base_datos
+from config import cadena_base_datos
 
 engine = create_engine(cadena_base_datos)
 Base = declarative_base()
@@ -20,7 +20,7 @@ class Establecimiento(Base):
     nEstudiantes = Column(Integer, nullable=false)
     nDocentes = Column(Integer, nullable=false)
     parroquia = relationship("Parroquia", back_populates="establecimientos")
-    parroquiaid = Column(String(20), ForeignKey('parroquia.codigo'), primary_key=True)
+    parroquiaid = Column(String(20), ForeignKey('parroquia.amie'), primary_key=True)
     
     def __repr__(self):
         return "Establecimiento: Nombre=%s - Numero de distrito=%s - Sostenimiento=%s - Tipo=%s - Modalidad=%s - Jornada=%s - Acceso=%s - Numero de Estudiantes=%d - Numero de Docenctes=%d"% (
@@ -40,7 +40,7 @@ class Parroquia(Base):
     parroquia = Column(String(30), nullable=False)
     establecimientos = relationship("Establecimiento", back_populates="parroquia")
     canton = relationship("Canton", back_populates="parroquias")
-    canton_id = Column(String(20), ForeignKey('canton.codigo'), primary_key=True)
+    canton_id = Column(String(20), ForeignKey('canton.amie'), primary_key=True)
 
     def __repr__(self):
         return "Parroquia: Codigo Amie=%s - Nombre=%s"%(
@@ -54,7 +54,7 @@ class Canton(Base):
     canton = Column(String(30), nullable=False)
     parroquias = relationship("Parroquia", back_populates="canton")
     provincia = relationship("Provincia", back_populates="cantones")
-    provincia_id = Column(String(20), ForeignKey('provincia.codigo'), primary_key=True)
+    provincia_id = Column(String(20), ForeignKey('provincia.amie'), primary_key=True)
 
     def __repr__(self):
         return "Canton: Codigo Amie=%s - Nombre=%s"%(

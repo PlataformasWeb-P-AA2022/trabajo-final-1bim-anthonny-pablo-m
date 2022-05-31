@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from genera_tablas import *
-from configuracion import cadena_base_datos
+from config import cadena_base_datos
 
 engine = create_engine(cadena_base_datos)
 
@@ -31,4 +31,4 @@ for e in establecimientos:
 establecimientos = session.query(Establecimiento).join(Parroquia, Canton).filter(Canton.canton == 'ZAMORA').all()
 print("Todos los establecimientos del cantón de Zamora.")
 for e in establecimientos:
-    print(e, "\n")
+    print(e, Canton.canton, "\n")

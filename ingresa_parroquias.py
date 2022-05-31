@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from genera_tablas import Parroquia, Canton
-from configuracion import cadena_base_datos
+from config import cadena_base_datos
 
 import csv
 

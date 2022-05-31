@@ -1,1 +1,2 @@
-cadena_base_datos = 'mysql+mysqlconnector://root:12345678@localhost:3306/base_final'
+
+cadena_base_datos = 'sqlite:///final1bimaa22.db'
